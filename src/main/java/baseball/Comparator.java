@@ -1,22 +1,21 @@
 package baseball;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class Comparator implements Comparable<UserAnswer> {
-    @Override
-    public int compareTo(UserAnswer userAnswer) {
-        int matchedCount = 0;
+public class Comparator {
+    private final List<String> convertedUserAnswer;
+    private final List<String> convertedCorrectAnswer;
 
-        var userAnswerList = convertToList(userAnswer.answer());
+    public Comparator(UserAnswer userAnswer, CorrectAnswer correctAnswer) {
+        this.convertedUserAnswer = convertToList(userAnswer.answer());
+        this.convertedCorrectAnswer = convertToList(correctAnswer.answer());
+    }
 
-        var correctAnswerList = convertToList(new CorrectAnswer("123").answer());
-
-        for (int i = 0; i < 3; i++) {
-            if (userAnswerList.get(i).equals(correctAnswerList.get(i))) {
-                matchedCount++;
-            }
-        }
-        return matchedCount;
+    public int calculateStrike() {
+        return (int) IntStream.range(0, 3)
+                .filter(location -> convertedUserAnswer.get(location).equals(convertedCorrectAnswer.get(location)))
+                .count();
     }
 
     public List<String> convertToList(String answer) {
