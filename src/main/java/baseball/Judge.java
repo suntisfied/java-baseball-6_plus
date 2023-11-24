@@ -3,28 +3,28 @@ package baseball;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class Comparator {
+public class Judge {
     private final List<String> convertedUserAnswer;
     private final List<String> convertedCorrectAnswer;
 
-    public Comparator(UserAnswer userAnswer, CorrectAnswer correctAnswer) {
+    public Judge(UserAnswer userAnswer, CorrectAnswer correctAnswer) {
         this.convertedUserAnswer = convertToList(userAnswer.answer());
         this.convertedCorrectAnswer = convertToList(correctAnswer.answer());
     }
 
-    public int calculateBall() {
+    public int judgeBall() {
         return (int) convertedUserAnswer.stream()
                 .filter(convertedCorrectAnswer::contains)
-                .count() - calculateStrike();
+                .count() - judgeStrike();
     }
 
-    public int calculateStrike() {
+    public int judgeStrike() {
         return (int) IntStream.range(0, convertedCorrectAnswer.size())
                 .filter(location -> convertedUserAnswer.get(location).equals(convertedCorrectAnswer.get(location)))
                 .count();
     }
 
-    public List<String> convertToList(String answer) {
+    private static List<String> convertToList(String answer) {
         return answer.chars()
                 .mapToObj(character -> String.valueOf((char) character))
                 .toList();
