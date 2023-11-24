@@ -12,8 +12,14 @@ public class Comparator {
         this.convertedCorrectAnswer = convertToList(correctAnswer.answer());
     }
 
+    public int calculateBall() {
+        return (int) convertedUserAnswer.stream()
+                .filter(convertedCorrectAnswer::contains)
+                .count() - calculateStrike();
+    }
+
     public int calculateStrike() {
-        return (int) IntStream.range(0, 3)
+        return (int) IntStream.range(0, convertedCorrectAnswer.size())
                 .filter(location -> convertedUserAnswer.get(location).equals(convertedCorrectAnswer.get(location)))
                 .count();
     }
