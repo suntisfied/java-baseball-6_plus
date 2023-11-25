@@ -9,14 +9,27 @@ class CorrectAnswerGeneratorTest {
 
     @ParameterizedTest
     @CsvSource({
-            "123",
-            "abc",
+            "3",
+            "4",
     })
-    public void generateCorrectAnswer(String userInput) {
-        var correctAnswerGenerator = new CorrectAnswerGenerator(new UserAnswer(userInput));
+    public void generateCorrectAnswerInNumber(Integer gameSize) {
+        var correctAnswerGenerator = new CorrectAnswerGenerator(gameSize, 1);
         var correctAnswer = correctAnswerGenerator.generateCorrectAnswer();
         System.out.println("Correct Answer: " + correctAnswer.answer());
 
-        assertThat(correctAnswer.answer().length()).isEqualTo(userInput.length());
+        assertThat(correctAnswer.answer().length()).isEqualTo(gameSize);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "3",
+            "4",
+    })
+    public void generateCorrectAnswerInString(Integer gameSize) {
+        var correctAnswerGenerator = new CorrectAnswerGenerator(gameSize, 2);
+        var correctAnswer = correctAnswerGenerator.generateCorrectAnswer();
+        System.out.println("Correct Answer: " + correctAnswer.answer());
+
+        assertThat(correctAnswer.answer().length()).isEqualTo(gameSize);
     }
 }

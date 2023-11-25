@@ -9,15 +9,28 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @CsvSource({
             "123, true",
-            "12345, true",
+            "abc, false",
+            "Abc, false",
+            "12a, false",
+            "12*/, false",
+    })
+    public void validateUserInputInNumber(String userInput, boolean isValid) {
+        var playerInputValidator = new UserInputValidator();
+
+        assertThat(playerInputValidator.validatePlayerInput(userInput, 3, 1)).isEqualTo(isValid);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "123, false",
             "abc, true",
             "Abc, false",
             "12a, false",
             "12*/, false",
     })
-    public void validateUserInput(String userInput, boolean isValid) {
+    public void validateUserInputInString(String userInput, boolean isValid) {
         var playerInputValidator = new UserInputValidator();
 
-        assertThat(playerInputValidator.validatePlayerInput(userInput)).isEqualTo(isValid);
+        assertThat(playerInputValidator.validatePlayerInput(userInput, 3, 2)).isEqualTo(isValid);
     }
 }

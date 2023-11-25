@@ -1,12 +1,19 @@
 package baseball;
 
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class UserInputValidator {
-    public boolean validatePlayerInput(String userInput) {
-        return (isPositiveInteger.test(userInput)
-                || isLowercaseAlphabet.test(userInput))
-                && isBiggerThanLengthOne.test(userInput);
+    public boolean validatePlayerInput(String userInput, Integer gameSize, Integer gameType) {
+        boolean commonValidity = isBiggerThanLengthOne.test(userInput) && isPredefinedSize.test(userInput, gameSize);
+
+        if (gameType == 1) {
+            return isPositiveInteger.test(userInput)
+                    && commonValidity;
+        }
+
+        return isLowercaseAlphabet.test(userInput)
+                && commonValidity;
     }
 
     public boolean validateGameSizeInput(String userInput) {
@@ -32,4 +39,6 @@ public class UserInputValidator {
     private final Predicate<String> isValidType = input ->
             Integer.parseInt(input) == 1
                     || Integer.parseInt(input) == 2;
+
+    public final BiPredicate<String, Integer> isPredefinedSize = (input, size) -> input.length() == size;
 }
