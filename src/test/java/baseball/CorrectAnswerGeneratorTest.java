@@ -17,4 +17,16 @@ class CorrectAnswerGeneratorTest {
 
         assertThat(correctAnswer.answer().length()).isEqualTo(3);
     }
+
+    @Test
+    public void generateCorrectAnswerInString() {
+        UserAnswer userAnswer = new UserAnswer("abc");
+
+        var correctAnswerGenerator = new CorrectAnswerGenerator(userAnswer);
+
+        var correctAnswer = correctAnswerGenerator.generateStringCorrectAnswer();
+        System.out.println(correctAnswer.answer());
+
+        assertThat(correctAnswer.answer().length()).isEqualTo(3);
+    }
 }
