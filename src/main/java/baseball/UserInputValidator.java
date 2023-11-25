@@ -9,7 +9,15 @@ public class UserInputValidator {
                 && isBiggerThanLengthOne.test(userInput);
     }
 
-    private final Predicate<String> isPositiveInteger = input -> {
+    public boolean validateGameSizeInput(String userInput) {
+        return isPositiveInteger.test(userInput);
+    }
+
+    public boolean validateGameTypeInput(String userInput) {
+        return isValidType.test(userInput);
+    }
+
+    public final Predicate<String> isPositiveInteger = input -> {
         try {
             return Integer.parseInt(input) > 0;
         } catch (NumberFormatException e) {
@@ -17,7 +25,11 @@ public class UserInputValidator {
         }
     };
 
-    private final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
+    public final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
 
     private final Predicate<String> isBiggerThanLengthOne = input -> input.length() > 1;
+
+    private final Predicate<String> isValidType = input ->
+            Integer.parseInt(input) == 1
+                    || Integer.parseInt(input) == 2;
 }
