@@ -1,5 +1,6 @@
 package baseball;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -25,8 +26,6 @@ public class Judge {
     }
 
     private static List<String> convertToList(String answer) {
-        return answer.chars()
-                .mapToObj(character -> String.valueOf((char) character))
-                .toList();
+        return Arrays.asList(answer.split(""));
     }
 }
