@@ -1,6 +1,7 @@
 package baseball;
 
-import java.util.Arrays;
+import static baseball.ConvertingUtils.convertStringToList;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -9,8 +10,8 @@ public class Umpire {
     private final List<String> correctAnswerEach;
 
     public Umpire(UserAnswer userAnswer, CorrectAnswer correctAnswer) {
-        this.userAnswerEach = convertToList(userAnswer.answer());
-        this.correctAnswerEach = convertToList(correctAnswer.answer());
+        this.userAnswerEach = convertStringToList(userAnswer.answer());
+        this.correctAnswerEach = convertStringToList(correctAnswer.answer());
     }
 
     public int callBall() {
@@ -23,9 +24,5 @@ public class Umpire {
         return (int) IntStream.range(0, correctAnswerEach.size())
                 .filter(location -> userAnswerEach.get(location).equals(correctAnswerEach.get(location)))
                 .count();
-    }
-
-    private static List<String> convertToList(String answer) {
-        return Arrays.asList(answer.split(""));
     }
 }
