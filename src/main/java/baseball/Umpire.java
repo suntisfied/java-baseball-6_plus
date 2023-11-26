@@ -9,8 +9,8 @@ public class Umpire {
     private final List<String> userAnswerEach;
     private final List<String> correctAnswerEach;
 
-    public Umpire(UserAnswer userAnswer, CorrectAnswer correctAnswer) {
-        this.userAnswerEach = convertStringToList(userAnswer.answer());
+    public Umpire(PlayerAnswer playerAnswer, CorrectAnswer correctAnswer) {
+        this.userAnswerEach = convertStringToList(playerAnswer.answer());
         this.correctAnswerEach = convertStringToList(correctAnswer.answer());
     }
 

@@ -1,6 +1,6 @@
 package baseball;
 
-public class UserInputValidator extends ValidatingUtils {
+public class PlayerInputValidator extends ValidatingUtils {
     public boolean validatePlayerInput(String userInput, Integer gameType, Integer gameSize) {
         boolean commonValidity = isUniqueOnly.test(userInput) && isPredefinedSize.test(userInput, gameSize);
 

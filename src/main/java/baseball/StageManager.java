@@ -21,19 +21,19 @@ public class StageManager {
         int gameType = gameInitializer.setGameType();
         int gameSize = gameInitializer.setGameSize();
 
-        UserAnswer userAnswer;
+        PlayerAnswer playerAnswer;
         var correctAnswer = new CorrectAnswerGenerator(gameType, gameSize).generateCorrectAnswer();
         do {
             System.out.println("Main Game Starts");
-            userAnswer = player.speculateAnswer(gameType, gameSize);
-            System.out.println("User Input: " + userAnswer.answer());
+            playerAnswer = player.speculateAnswer(gameType, gameSize);
+            System.out.println("User Input: " + playerAnswer.answer());
             System.out.println("Correct Answer: " + correctAnswer.answer());
 
-            var umpire = new Umpire(userAnswer, correctAnswer);
+            var umpire = new Umpire(playerAnswer, correctAnswer);
             int ball = umpire.callBall();
             int strike = umpire.callStrike();
             System.out.println("ball: " + ball);
             System.out.println("strike: " + strike);
-        } while (!userAnswer.answer().equals(correctAnswer.answer()));
+        } while (!playerAnswer.answer().equals(correctAnswer.answer()));
     }
 }

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class UserInputValidatorTest {
+class PlayerInputValidatorTest {
     @ParameterizedTest
     @CsvSource({
             "123, 1, 3, true",
@@ -23,7 +23,7 @@ class UserInputValidatorTest {
             "12*/, 1, 3, false",
     })
     public void validateUserInputInNumber(String userInput, int gameType, int gameSize, boolean isValid) {
-        var playerInputValidator = new UserInputValidator();
+        var playerInputValidator = new PlayerInputValidator();
 
         assertThat(playerInputValidator.validatePlayerInput(userInput, gameType, gameSize)).isEqualTo(isValid);
     }

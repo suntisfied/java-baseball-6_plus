@@ -1,21 +1,21 @@
 package baseball;
 
 public class Player extends ConsoleInputForm {
-    private final UserInputValidator userInputValidator;
+    private final PlayerInputValidator playerInputValidator;
 
     public Player() {
-        userInputValidator = new UserInputValidator();
+        playerInputValidator = new PlayerInputValidator();
     }
 
-    public UserAnswer speculateAnswer(int gameType, int gameSize) {
+    public PlayerAnswer speculateAnswer(int gameType, int gameSize) {
         String userInput = getInputUntilCorrect(
                 () -> System.out.print("Your Guess: "),
                 input -> {
-                    if (!userInputValidator.validatePlayerInput(input, gameType, gameSize)) {
+                    if (!playerInputValidator.validatePlayerInput(input, gameType, gameSize)) {
                         throw new IllegalArgumentException("Invalid User Answer Input");
                     }
                 }
         );
-        return new UserAnswer(userInput);
+        return new PlayerAnswer(userInput);
     }
 }

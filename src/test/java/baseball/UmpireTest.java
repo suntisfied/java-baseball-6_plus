@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 class UmpireTest {
-    Umpire umpire = new Umpire(new UserAnswer("124"), new CorrectAnswer("123"));
+    Umpire umpire = new Umpire(new PlayerAnswer("124"), new CorrectAnswer("123"));
 
     @Test
     public void callBall() {
