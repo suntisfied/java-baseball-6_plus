@@ -16,6 +16,7 @@ public class ValidatingUtils {
     };
 
     public final Predicate<String> isValidType = input -> input.equals("1") || input.equals("2");
+    public final Predicate<String> isValidEndingInput = input -> input.equals("1") || input.equals("2");
 
     public final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
 

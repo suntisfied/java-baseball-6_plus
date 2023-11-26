@@ -1,14 +1,23 @@
 package baseball;
 
 public class StageManager {
+    private final GameInitializer gameInitializer;
     private final Player player;
+    private final GameFinalizer gameFinalizer;
 
     public StageManager() {
+        gameInitializer = new GameInitializer();
         player = new Player();
+        gameFinalizer = new GameFinalizer();
     }
 
-    public void proceedMainGameUntilCorrectAnswer() {
-        var gameInitializer = new GameInitializer();
+    public void repeatEntireGameUntilEnd() {
+        do {
+            proceedMainGameUntilCorrectAnswer();
+        } while (gameFinalizer.isRepeating());
+    }
+
+    private void proceedMainGameUntilCorrectAnswer() {
         int gameType = gameInitializer.setGameType();
         int gameSize = gameInitializer.setGameSize();
 
