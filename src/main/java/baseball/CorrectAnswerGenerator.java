@@ -10,7 +10,7 @@ public class CorrectAnswerGenerator {
     private final int gameSize;
     private final int gameType;
 
-    public CorrectAnswerGenerator(int gameSize, int gameType) {
+    public CorrectAnswerGenerator(int gameType, int gameSize) {
         this.gameSize = gameSize;
         this.gameType = gameType;
     }

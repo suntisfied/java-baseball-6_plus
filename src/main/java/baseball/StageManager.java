@@ -13,7 +13,7 @@ public class StageManager {
         int gameType = gameInitializer.setGameType();
 
         UserAnswer userAnswer;
-        var correctAnswer = new CorrectAnswerGenerator(gameSize, gameType).generateCorrectAnswer();
+        var correctAnswer = new CorrectAnswerGenerator(gameType, gameSize).generateCorrectAnswer();
         do {
             System.out.println("Main Game Starts");
             userAnswer = player.speculateAnswer(gameSize, gameType);
