@@ -26,11 +26,12 @@ public class CorrectAnswerGenerator {
         List<Integer> correctAnswerNumberDigits = new ArrayList<>(IntStream.range(1, 10).boxed().toList());
         Collections.shuffle(correctAnswerNumberDigits);
 
-        int correctAnswerNumber = correctAnswerNumberDigits.stream()
+        String correctAnswerNumber = correctAnswerNumberDigits.stream()
                 .limit(gameSize)
-                .reduce(0, (accumulator, digit) -> accumulator * 10 + digit);
+                .map(String::valueOf)
+                .collect(Collectors.joining());
 
-        return new CorrectAnswer(String.valueOf(correctAnswerNumber));
+        return new CorrectAnswer(correctAnswerNumber);
     }
 
     private CorrectAnswer generateStringCorrectAnswer() {
