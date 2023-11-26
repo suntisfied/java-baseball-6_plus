@@ -7,14 +7,14 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class UserInputValidator {
-    public boolean validatePlayerInput(String userInput, Integer gameSize, Integer gameType) {
+    public boolean validatePlayerInput(String userInput, Integer gameType, Integer gameSize) {
         boolean commonValidity = isUniqueOnly.test(userInput) && isPredefinedSize.test(userInput, gameSize);
 
         if (gameType == 1) {
             return isProperNumberRange.test(userInput) && isPositiveInteger.test(userInput) && commonValidity;
         }
 
-        return isLowercaseAlphabet.test(userInput) && commonValidity;
+        return isProperAlphabetRange.test(userInput) && isLowercaseAlphabet.test(userInput) && commonValidity;
     }
 
     public boolean validateGameSizeInput(String userInput) {
@@ -36,6 +36,7 @@ public class UserInputValidator {
     public final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
 
     private final Predicate<String> isProperNumberRange = input -> input.length() > 1 && input.length() < 10;
+    private final Predicate<String> isProperAlphabetRange = input -> input.length() > 1 && input.length() <= 26;
 
     private final Predicate<String> isUniqueOnly = input ->
             convertStringToList(input).size() == convertStringToSet(input).size();

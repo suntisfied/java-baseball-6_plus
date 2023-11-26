@@ -11,16 +11,16 @@ public class Player {
         userInputValidator = new UserInputValidator();
     }
 
-    public UserAnswer speculateAnswer(int gameSize, int gameType) {
+    public UserAnswer speculateAnswer(int gameType, int gameSize) {
         String input = scanner.nextLine();
 
         try {
-            if (!userInputValidator.validatePlayerInput(input, gameSize, gameType)) {
+            if (!userInputValidator.validatePlayerInput(input, gameType, gameSize)) {
                 throw new IllegalArgumentException("Invalid User Answer Input");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return speculateAnswer(gameSize, gameType);
+            return speculateAnswer(gameType, gameSize);
         }
 
         return new UserAnswer(input);
