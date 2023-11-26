@@ -9,14 +9,14 @@ public class StageManager {
 
     public void proceedMainGameUntilCorrectAnswer() {
         var gameInitializer = new GameInitializer();
-        int gameSize = gameInitializer.setGameSize();
         int gameType = gameInitializer.setGameType();
+        int gameSize = gameInitializer.setGameSize();
 
         UserAnswer userAnswer;
         var correctAnswer = new CorrectAnswerGenerator(gameType, gameSize).generateCorrectAnswer();
         do {
             System.out.println("Main Game Starts");
-            userAnswer = player.speculateAnswer(gameSize, gameType);
+            userAnswer = player.speculateAnswer(gameType, gameSize);
             System.out.println("User Input: " + userAnswer.answer());
             System.out.println("Correct Answer: " + correctAnswer.answer());
 
