@@ -1,5 +1,8 @@
 package baseball;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,9 +26,13 @@ public class CorrectAnswerGenerator {
     }
 
     private CorrectAnswer generateNumberCorrectAnswer() {
-        int DigitLength = (int) Math.pow(10, gameSize - 1);
+        List<Integer> correctAnswerNumberDigits = new ArrayList<>(IntStream.range(1, 10).boxed().toList());
+        Collections.shuffle(correctAnswerNumberDigits);
 
-        int correctAnswerNumber = random.nextInt(9 * DigitLength) + DigitLength;
+        int correctAnswerNumber = correctAnswerNumberDigits.stream()
+                .limit(gameSize)
+                .reduce(0, (accumulator, digit) -> accumulator * 10 + digit);
+
         return new CorrectAnswer(String.valueOf(correctAnswerNumber));
     }
 
