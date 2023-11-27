@@ -9,10 +9,10 @@ public class Player extends ConsoleInputForm {
 
     public PlayerAnswer speculateAnswer(int gameType, int gameSize) {
         String userInput = getInputUntilCorrect(
-                () -> System.out.print("Your Guess: "),
+                () -> System.out.print(new TextFormatter().formatInput(gameType)),
                 input -> {
                     if (!playerInputValidator.validatePlayerInput(input, gameType, gameSize)) {
-                        throw new IllegalArgumentException("Invalid User Answer Input");
+                        throw new IllegalArgumentException(Texts.ERROR_GAME_GUESS_INPUT.getText());
                     }
                 }
         );
