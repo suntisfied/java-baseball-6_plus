@@ -4,6 +4,7 @@ public enum Texts {
     BALL("볼"),
     STRIKE("스트라이크"),
     NOTHING("낫싱"),
+    LINE_BREAK(System.lineSeparator()),
     GAME_TYPE_INPUT(String.format("숫자 야구를 시작하려면 %s, 알파벳 야구를 시작하려면 %s를 입력하세요.",
             Buttons.GAME_TYPE_NUMBER.getButton(), Buttons.GAME_TYPE_ALPHABET.getButton())),
     GAME_SIZE_INPUT("정답의 길이를 설정하세요. (예시: 123 -> 길이 3 / abcd -> 길이 4)"),

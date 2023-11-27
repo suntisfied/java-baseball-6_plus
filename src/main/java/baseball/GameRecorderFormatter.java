@@ -1,11 +1,12 @@
 package baseball;
 
+import static baseball.Texts.LINE_BREAK;
+
 import java.util.stream.Collectors;
 
 public class GameRecorderFormatter {
     private final GameRecorder gameRecorder;
     private final CorrectAnswer correctAnswer;
-    private static final String LINE_BREAK = System.lineSeparator();
 
     public GameRecorderFormatter(GameRecorder gameRecorder, CorrectAnswer correctAnswer) {
         this.gameRecorder = gameRecorder;
@@ -13,29 +14,30 @@ public class GameRecorderFormatter {
     }
 
     public String combineAnalyses() {
-        return LINE_BREAK
-                + Texts.RESULT_INSTRUCTION.getText() + LINE_BREAK
-                + formatCorrectAnswer() + LINE_BREAK
-                + LINE_BREAK
-                + formatPitchingNumber() + LINE_BREAK
-                + LINE_BREAK
+        return LINE_BREAK.getText()
+                + Texts.RESULT_INSTRUCTION.getText() + LINE_BREAK.getText()
+                + formatCorrectAnswer() + LINE_BREAK.getText()
+                + LINE_BREAK.getText()
+                + formatPitchingNumber() + LINE_BREAK.getText()
+                + LINE_BREAK.getText()
                 + formatPitchingRecords()
-                + LINE_BREAK;
+                + LINE_BREAK.getText();
     }
 
     private String formatCorrectAnswer() {
-        return Texts.RESULT_HEAD_CORRECT_ANSWER.getText() + LINE_BREAK + correctAnswer.answer();
+        return Texts.RESULT_HEAD_CORRECT_ANSWER.getText() + LINE_BREAK.getText() + correctAnswer.answer();
     }
 
     private String formatPitchingNumber() {
-        return Texts.RESULT_HEAD_PITCHING_NUMBER.getText() + LINE_BREAK + gameRecorder.retrievePitchingNumber();
+        return Texts.RESULT_HEAD_PITCHING_NUMBER.getText() + LINE_BREAK.getText()
+                + gameRecorder.retrievePitchingNumber();
     }
 
     private String formatPitchingRecords() {
-        String head = Texts.RESULT_HEAD_PITCHING_RECORDS.getText() + LINE_BREAK;
+        String head = Texts.RESULT_HEAD_PITCHING_RECORDS.getText() + LINE_BREAK.getText();
         if (!gameRecorder.retrievePitchingRecords().isEmpty()) {
             return head + gameRecorder.retrievePitchingRecords().stream()
-                    .map(PlayerAnswer::answer).collect(Collectors.joining(LINE_BREAK));
+                    .map(PlayerAnswer::answer).collect(Collectors.joining(LINE_BREAK.getText()));
         }
         return head + Texts.NONE.getText();
     }
