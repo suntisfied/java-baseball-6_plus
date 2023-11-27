@@ -39,6 +39,7 @@ public class StageManager {
         Umpire umpire;
 
         System.out.println(textFormatter.formatGameStart(initialSettings));
+        System.out.println(Texts.INSTRUCTION_GIVE_UP.getText());
         GameRecorder gameRecorder = new GameRecorder();
         do {
             playerAnswer = player.speculateAnswer(initialSettings);
