@@ -1,6 +1,15 @@
-package baseball;
+package baseball.textformat;
 
-import static baseball.Texts.LINE_BREAK;
+import static baseball.setting.Texts.LINE_BREAK;
+
+import baseball.giveup.GiveUp;
+import baseball.playground.GameRecorder;
+import baseball.setting.Buttons;
+import baseball.setting.Texts;
+import baseball.valueholder.CorrectAnswer;
+import baseball.valueholder.InitialSettings;
+import baseball.valueholder.PitchingResult;
+import baseball.valueholder.PlayerAnswer;
 
 public class TextFormatter {
     public String formatPitchingResult(PitchingResult pitchingResult) {

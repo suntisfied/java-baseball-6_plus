@@ -1,10 +1,13 @@
-package baseball;
+package baseball.playground;
 
-import static baseball.GameRangeCharacter.INITIAL_CHARACTER;
-import static baseball.GameRangeCharacter.LAST_CHARACTER;
-import static baseball.GameRangeNumber.INITIAL_NUMBER;
-import static baseball.GameRangeNumber.LAST_NUMBER;
+import static baseball.setting.GameRangeCharacter.INITIAL_CHARACTER;
+import static baseball.setting.GameRangeCharacter.LAST_CHARACTER;
+import static baseball.setting.GameRangeNumber.INITIAL_NUMBER;
+import static baseball.setting.GameRangeNumber.LAST_NUMBER;
 
+import baseball.setting.Buttons;
+import baseball.valueholder.CorrectAnswer;
+import baseball.valueholder.InitialSettings;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

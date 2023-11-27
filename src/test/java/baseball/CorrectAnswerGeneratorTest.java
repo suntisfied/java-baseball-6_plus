@@ -2,6 +2,8 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import baseball.playground.CorrectAnswerGenerator;
+import baseball.valueholder.InitialSettings;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -14,7 +16,7 @@ class CorrectAnswerGeneratorTest {
             "2, 3",
             "2, 4",
     })
-    public void generateCorrectAnswerInNumber(int gameType, int gameSize) {
+    public void generateCorrectAnswerInNumber(String gameType, int gameSize) {
         var correctAnswerGenerator = new CorrectAnswerGenerator(new InitialSettings(gameType, gameSize));
         var correctAnswer = correctAnswerGenerator.generateCorrectAnswer();
         System.out.println("Correct Answer: " + correctAnswer.answer());

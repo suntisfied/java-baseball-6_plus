@@ -1,5 +1,6 @@
-package baseball;
+package baseball.staff;
 
+import baseball.giveup.GiveUpException;
 import java.util.Scanner;
 
 public abstract class ConsoleInputForm {

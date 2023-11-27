@@ -1,4 +1,7 @@
-package baseball;
+package baseball.validator;
+
+import baseball.setting.Buttons;
+import baseball.util.ValidatingUtils;
 
 public class InitializingInputValidator {
     private final ValidatingUtils validatingUtils;

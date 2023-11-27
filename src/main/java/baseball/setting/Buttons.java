@@ -1,4 +1,4 @@
-package baseball;
+package baseball.setting;
 
 public enum Buttons {
     GAME_TYPE_NUMBER("1"),

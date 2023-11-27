@@ -1,4 +1,13 @@
-package baseball;
+package baseball.staff;
+
+import baseball.giveup.GiveUp;
+import baseball.playground.CorrectAnswerGenerator;
+import baseball.playground.GameRecorder;
+import baseball.playground.Player;
+import baseball.playground.Umpire;
+import baseball.textformat.TextFormatter;
+import baseball.valueholder.CorrectAnswer;
+import baseball.valueholder.InitialSettings;
 
 public class StageManager {
     private final GameInitializer gameInitializer;
@@ -42,7 +51,7 @@ public class StageManager {
             var pitchingResult = umpire.umpire();
             System.out.println(textFormatter.formatPitchingResult(pitchingResult));
 
-            if (!umpire.isCompleteAnswer()) {
+            if (!umpire.validateAnswer()) {
                 return pitchBall(initialSettings, correctAnswer, gameRecorder);
             }
         }

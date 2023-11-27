@@ -1,4 +1,4 @@
-package baseball;
+package baseball.setting;
 
 public enum GameRangeCharacter {
     INITIAL_CHARACTER('a'),

@@ -1,4 +1,8 @@
-package baseball;
+package baseball.validator;
+
+import baseball.setting.Buttons;
+import baseball.util.ValidatingUtils;
+import baseball.valueholder.InitialSettings;
 
 public class PlayerInputValidator extends ValidatingUtils {
     public boolean validatePlayerInput(String userInput, InitialSettings initialSettings) {

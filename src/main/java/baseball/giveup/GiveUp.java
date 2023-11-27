@@ -1,4 +1,7 @@
-package baseball;
+package baseball.giveup;
+
+import baseball.setting.Texts;
+import baseball.valueholder.PlayerAnswer;
 
 public class GiveUp {
     public boolean isGivingUp(PlayerAnswer playerAnswer) {

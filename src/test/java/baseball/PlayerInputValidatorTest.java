@@ -2,6 +2,8 @@ package baseball;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import baseball.validator.PlayerInputValidator;
+import baseball.valueholder.InitialSettings;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -22,7 +24,7 @@ class PlayerInputValidatorTest {
             "12a, 1, 3, false",
             "12*/, 1, 3, false",
     })
-    public void validateUserInputInNumber(String userInput, int gameType, int gameSize, boolean isValid) {
+    public void validateUserInputInNumber(String userInput, String gameType, int gameSize, boolean isValid) {
         var playerInputValidator = new PlayerInputValidator();
 
         assertThat(

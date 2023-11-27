@@ -1,4 +1,4 @@
-package baseball;
+package baseball.setting;
 
 public enum Texts {
     BALL("볼"),

@@ -1,19 +1,22 @@
-package baseball;
+package baseball.playground;
 
-import static baseball.ConvertingUtils.convertStringToList;
+import static baseball.util.ConvertingUtils.convertStringToList;
 
+import baseball.valueholder.CorrectAnswer;
+import baseball.valueholder.PitchingResult;
+import baseball.valueholder.PlayerAnswer;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Umpire {
     private final List<String> playerAnswerEach;
     private final List<String> correctAnswerEach;
-    private final boolean completeAnswer;
+    private final boolean isCompleteAnswer;
 
     public Umpire(PlayerAnswer playerAnswer, CorrectAnswer correctAnswer) {
         this.playerAnswerEach = convertStringToList(playerAnswer.answer());
         this.correctAnswerEach = convertStringToList(correctAnswer.answer());
-        completeAnswer = playerAnswer.answer().equals(correctAnswer.answer());
+        isCompleteAnswer = playerAnswer.answer().equals(correctAnswer.answer());
     }
 
     public PitchingResult umpire() {
@@ -32,7 +35,7 @@ public class Umpire {
                 .count();
     }
 
-    public boolean isCompleteAnswer() {
-        return completeAnswer;
+    public boolean validateAnswer() {
+        return isCompleteAnswer;
     }
 }

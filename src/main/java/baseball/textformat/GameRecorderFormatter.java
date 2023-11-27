@@ -1,7 +1,11 @@
-package baseball;
+package baseball.textformat;
 
-import static baseball.Texts.LINE_BREAK;
+import static baseball.setting.Texts.LINE_BREAK;
 
+import baseball.playground.GameRecorder;
+import baseball.setting.Texts;
+import baseball.valueholder.CorrectAnswer;
+import baseball.valueholder.PlayerAnswer;
 import java.util.stream.Collectors;
 
 public class GameRecorderFormatter {

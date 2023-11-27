@@ -1,4 +1,7 @@
-package baseball;
+package baseball.staff;
+
+import baseball.setting.Texts;
+import baseball.validator.InitializingInputValidator;
 
 public class GameInitializer extends ConsoleInputForm {
     private final InitializingInputValidator initializingInputValidator;

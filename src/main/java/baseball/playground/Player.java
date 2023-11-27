@@ -1,4 +1,12 @@
-package baseball;
+package baseball.playground;
+
+import baseball.giveup.GiveUpException;
+import baseball.setting.Texts;
+import baseball.staff.ConsoleInputForm;
+import baseball.textformat.TextFormatter;
+import baseball.validator.PlayerInputValidator;
+import baseball.valueholder.InitialSettings;
+import baseball.valueholder.PlayerAnswer;
 
 public class Player extends ConsoleInputForm {
     private final PlayerInputValidator playerInputValidator;

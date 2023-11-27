@@ -1,12 +1,13 @@
-package baseball;
+package baseball.util;
 
-import static baseball.ConvertingUtils.convertStringToList;
-import static baseball.ConvertingUtils.convertStringToSet;
-import static baseball.GameRangeCharacter.INITIAL_CHARACTER;
-import static baseball.GameRangeCharacter.LAST_CHARACTER;
-import static baseball.GameRangeNumber.INITIAL_NUMBER;
-import static baseball.GameRangeNumber.LAST_NUMBER;
+import static baseball.util.ConvertingUtils.convertStringToList;
+import static baseball.util.ConvertingUtils.convertStringToSet;
+import static baseball.setting.GameRangeCharacter.INITIAL_CHARACTER;
+import static baseball.setting.GameRangeCharacter.LAST_CHARACTER;
+import static baseball.setting.GameRangeNumber.INITIAL_NUMBER;
+import static baseball.setting.GameRangeNumber.LAST_NUMBER;
 
+import baseball.setting.Buttons;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
