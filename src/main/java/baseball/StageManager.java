@@ -39,20 +39,23 @@ public class StageManager {
         Umpire umpire;
 
         System.out.println(textFormatter.formatGameStart(initialSettings));
+        GameRecorder gameRecorder = new GameRecorder();
         do {
             playerAnswer = player.speculateAnswer(initialSettings);
-            System.out.println("User Input: " + playerAnswer.answer());
-            System.out.println("Correct Answer: " + correctAnswer.answer());
-
             if (giveUp.isGivingUp(playerAnswer)) {
                 break;
             }
 
+            System.out.println("User Input: " + playerAnswer.answer());
+            System.out.println("Correct Answer: " + correctAnswer.answer());
+            gameRecorder.recordPitching(playerAnswer);
+
             umpire = new Umpire(playerAnswer, correctAnswer);
             var pitchingResult = umpire.umpire();
-            
+
             System.out.println(textFormatter.formatPitchingResult(pitchingResult));
         } while (!umpire.isCompleteAnswer());
         System.out.print(textFormatter.formatGameEnd(playerAnswer, initialSettings));
+        System.out.println(new GameRecorderFormatter(gameRecorder, correctAnswer).combineAnalyses());
     }
 }

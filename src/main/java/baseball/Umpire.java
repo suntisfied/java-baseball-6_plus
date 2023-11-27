@@ -3,18 +3,17 @@ package baseball;
 import static baseball.ConvertingUtils.convertStringToList;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Umpire {
     private final List<String> playerAnswerEach;
     private final List<String> correctAnswerEach;
+    private final boolean completeAnswer;
 
     public Umpire(PlayerAnswer playerAnswer, CorrectAnswer correctAnswer) {
         this.playerAnswerEach = convertStringToList(playerAnswer.answer());
         this.correctAnswerEach = convertStringToList(correctAnswer.answer());
+        completeAnswer = playerAnswer.answer().equals(correctAnswer.answer());
     }
 
     public PitchingResult umpire() {
@@ -34,9 +33,6 @@ public class Umpire {
     }
 
     public boolean isCompleteAnswer() {
-        Set<String> mergedAnswer =
-                Stream.concat(playerAnswerEach.stream(), correctAnswerEach.stream())
-                        .collect(Collectors.toSet());
-        return mergedAnswer.size() == correctAnswerEach.size();
+        return completeAnswer;
     }
 }
