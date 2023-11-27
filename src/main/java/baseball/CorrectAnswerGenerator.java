@@ -1,5 +1,10 @@
 package baseball;
 
+import static baseball.GameRangeCharacter.INITIAL_CHARACTER;
+import static baseball.GameRangeCharacter.LAST_CHARACTER;
+import static baseball.GameRangeNumber.INITIAL_NUMBER;
+import static baseball.GameRangeNumber.LAST_NUMBER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +28,8 @@ public class CorrectAnswerGenerator {
     }
 
     private CorrectAnswer generateNumberCorrectAnswer() {
-        List<Integer> correctAnswerNumberDigits = new ArrayList<>(IntStream.range(1, 10).boxed().toList());
+        List<Integer> correctAnswerNumberDigits = new ArrayList<>(
+                IntStream.rangeClosed(INITIAL_NUMBER.getNumber(), LAST_NUMBER.getNumber()).boxed().toList());
         Collections.shuffle(correctAnswerNumberDigits);
 
         String correctAnswerNumber = correctAnswerNumberDigits.stream()
@@ -36,7 +42,7 @@ public class CorrectAnswerGenerator {
 
     private CorrectAnswer generateStringCorrectAnswer() {
         List<Character> correctAnswerAlphabets =
-                new ArrayList<>(IntStream.rangeClosed('a', 'z')
+                new ArrayList<>(IntStream.rangeClosed(INITIAL_CHARACTER.getCharacter(), LAST_CHARACTER.getCharacter())
                         .mapToObj(numberValue -> (char) numberValue)
                         .toList());
         Collections.shuffle(correctAnswerAlphabets);

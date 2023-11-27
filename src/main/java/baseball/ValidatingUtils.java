@@ -2,11 +2,18 @@ package baseball;
 
 import static baseball.ConvertingUtils.convertStringToList;
 import static baseball.ConvertingUtils.convertStringToSet;
+import static baseball.GameRangeCharacter.INITIAL_CHARACTER;
+import static baseball.GameRangeCharacter.LAST_CHARACTER;
+import static baseball.GameRangeNumber.INITIAL_NUMBER;
+import static baseball.GameRangeNumber.LAST_NUMBER;
 
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class ValidatingUtils {
+    private final int CHARACTER_RANGE =
+            (int) LAST_CHARACTER.getCharacter() - (int) INITIAL_CHARACTER.getCharacter() + 1;
+
     public final Predicate<String> isPositiveInteger = input -> {
         try {
             return Integer.parseInt(input) > 0;
@@ -19,19 +26,22 @@ public class ValidatingUtils {
 
     public final Predicate<String> isProperNumberSetting = input -> {
         int parsedInput = Integer.parseInt(input);
-        return parsedInput > 1 && parsedInput <= 9;
+        return parsedInput > INITIAL_NUMBER.getNumber() && parsedInput <= LAST_NUMBER.getNumber();
     };
 
     public final Predicate<String> isProperAlphabetSetting = input -> {
         int parsedInput = Integer.parseInt(input);
-        return parsedInput > 1 && parsedInput <= 26;
+        return parsedInput > 1 && parsedInput <= CHARACTER_RANGE;
     };
 
-    public final Predicate<String> isProperNumberRange = input -> input.length() > 1 && input.length() <= 9;
+    public final Predicate<String> isProperNumberRange = input ->
+            input.length() > 1 && input.length() <= LAST_NUMBER.getNumber();
 
-    public final Predicate<String> isProperAlphabetRange = input -> input.length() > 1 && input.length() <= 26;
+    public final Predicate<String> isProperAlphabetRange = input ->
+            input.length() > 1 && input.length() <= CHARACTER_RANGE;
 
-    public final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
+    public final Predicate<String> isLowercaseAlphabet = input ->
+            input.matches("[" + INITIAL_CHARACTER.getCharacter() + "-" + LAST_CHARACTER.getCharacter() + "]+");
 
     public final Predicate<String> isUniqueOnly = input ->
             convertStringToList(input).size() == convertStringToSet(input).size();
