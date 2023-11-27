@@ -16,15 +16,27 @@ public class ValidatingUtils {
     };
 
     public final Predicate<String> isValidType = input -> input.equals("1") || input.equals("2");
-    public final Predicate<String> isValidEndingInput = input -> input.equals("1") || input.equals("2");
+
+    public final Predicate<String> isProperNumberSetting = input -> {
+        int parsedInput = Integer.parseInt(input);
+        return parsedInput > 1 && parsedInput <= 9;
+    };
+
+    public final Predicate<String> isProperAlphabetSetting = input -> {
+        int parsedInput = Integer.parseInt(input);
+        return parsedInput > 1 && parsedInput <= 26;
+    };
+
+    public final Predicate<String> isProperNumberRange = input -> input.length() > 1 && input.length() <= 9;
+
+    public final Predicate<String> isProperAlphabetRange = input -> input.length() > 1 && input.length() <= 26;
 
     public final Predicate<String> isLowercaseAlphabet = input -> input.matches("[a-z]+");
-
-    public final Predicate<String> isProperNumberRange = input -> input.length() > 1 && input.length() < 10;
-    public final Predicate<String> isProperAlphabetRange = input -> input.length() > 1 && input.length() <= 26;
 
     public final Predicate<String> isUniqueOnly = input ->
             convertStringToList(input).size() == convertStringToSet(input).size();
 
     public final BiPredicate<String, Integer> isPredefinedSize = (input, size) -> input.length() == size;
+
+    public final Predicate<String> isValidEndingInput = input -> input.equals("1") || input.equals("2");
 }

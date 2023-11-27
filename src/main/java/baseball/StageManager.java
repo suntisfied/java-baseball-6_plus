@@ -21,7 +21,7 @@ public class StageManager {
 
     private void proceedMainGameUntilCorrectAnswer() {
         int gameType = gameInitializer.setGameType();
-        int gameSize = gameInitializer.setGameSize();
+        int gameSize = gameInitializer.setGameSize(gameType);
         System.out.println();
 
         PlayerAnswer playerAnswer;
