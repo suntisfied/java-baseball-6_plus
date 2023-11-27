@@ -19,6 +19,7 @@ public enum Texts {
     RESTART("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요."),
     GIVE_UP("게임을 포기하셨습니다."),
     MARK_GIVE_UP("!"),
+    NONE("없음"),
     ERROR_GAME_TYPE_INPUT("올바른 게임 유형 입력이 아닙니다."),
     ERROR_GAME_SIZE_INPUT("올바른 게임 크기 입력이 아닙니다."),
     ERROR_GAME_GUESS_INPUT("올바른 입력이 아닙니다."),

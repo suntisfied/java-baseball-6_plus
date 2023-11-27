@@ -32,8 +32,11 @@ public class GameRecorderFormatter {
     }
 
     private String formatPitchingRecords() {
-        return Texts.RESULT_HEAD_PITCHING_RECORDS.getText() + LINE_BREAK
-                + gameRecorder.retrievePitchingRecords().stream()
-                .map(PlayerAnswer::answer).collect(Collectors.joining(LINE_BREAK));
+        String head = Texts.RESULT_HEAD_PITCHING_RECORDS.getText() + LINE_BREAK;
+        if (!gameRecorder.retrievePitchingRecords().isEmpty()) {
+            return head + gameRecorder.retrievePitchingRecords().stream()
+                    .map(PlayerAnswer::answer).collect(Collectors.joining(LINE_BREAK));
+        }
+        return head + Texts.NONE.getText();
     }
 }
