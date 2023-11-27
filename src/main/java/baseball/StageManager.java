@@ -2,23 +2,17 @@ package baseball;
 
 public class StageManager {
     private final GameInitializer gameInitializer;
-    private final Player player;
-    private final GiveUp giveUp;
-    private final GameFinalizer gameFinalizer;
     private final TextFormatter textFormatter;
 
     public StageManager() {
         gameInitializer = new GameInitializer();
-        player = new Player();
-        giveUp = new GiveUp();
-        gameFinalizer = new GameFinalizer();
         textFormatter = new TextFormatter();
     }
 
     public void repeatEntireGameUntilEnd() {
         do {
             proceedMainGameUntilCorrectAnswer();
-        } while (gameFinalizer.isRepeating());
+        } while (new GameFinalizer().isRepeating());
     }
 
     private void proceedMainGameUntilCorrectAnswer() {
@@ -34,28 +28,29 @@ public class StageManager {
     }
 
     private void proceedMainGame(InitialSettings initialSettings) {
-        PlayerAnswer playerAnswer;
-        CorrectAnswer correctAnswer = new CorrectAnswerGenerator(initialSettings).generateCorrectAnswer();
-        Umpire umpire;
-
         System.out.println(textFormatter.formatGameStart(initialSettings));
-        GameRecorder gameRecorder = new GameRecorder();
-        do {
-            playerAnswer = player.speculateAnswer(initialSettings);
-            if (giveUp.isGivingUp(playerAnswer)) {
-                break;
-            }
 
-            System.out.println("User Input: " + playerAnswer.answer());
-            System.out.println("Correct Answer: " + correctAnswer.answer());
+        var correctAnswer = new CorrectAnswerGenerator(initialSettings).generateCorrectAnswer();
+        String gameSummary = pitchBall(initialSettings, correctAnswer, new GameRecorder());
+
+        System.out.println(gameSummary);
+    }
+
+    private String pitchBall(InitialSettings initialSettings, CorrectAnswer correctAnswer, GameRecorder gameRecorder) {
+        var playerAnswer = new Player().speculateAnswer(initialSettings);
+
+        if (!new GiveUp().isGivingUp(playerAnswer)) {
             gameRecorder.recordPitching(playerAnswer);
 
-            umpire = new Umpire(playerAnswer, correctAnswer);
+            var umpire = new Umpire(playerAnswer, correctAnswer);
             var pitchingResult = umpire.umpire();
             System.out.println(textFormatter.formatPitchingResult(pitchingResult));
 
-        } while (!umpire.isCompleteAnswer());
+            if (!umpire.isCompleteAnswer()) {
+                return pitchBall(initialSettings, correctAnswer, gameRecorder);
+            }
+        }
         System.out.print(textFormatter.formatGameEnd(playerAnswer, initialSettings));
-        System.out.println(textFormatter.formatSummary(gameRecorder, correctAnswer));
+        return textFormatter.formatSummary(gameRecorder, correctAnswer);
     }
 }
