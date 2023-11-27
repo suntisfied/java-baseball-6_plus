@@ -2,7 +2,7 @@ package baseball;
 
 public enum GameRangeNumber {
     INITIAL_NUMBER(1),
-    LAST_NUMBER(3),
+    LAST_NUMBER(9),
     ;
 
     private final int number;

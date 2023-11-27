@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CorrectAnswerGenerator {
-    private final int gameType;
+    private final String gameType;
     private final int gameSize;
 
     public CorrectAnswerGenerator(InitialSettings initialSettings) {
@@ -21,7 +21,7 @@ public class CorrectAnswerGenerator {
     }
 
     public final CorrectAnswer generateCorrectAnswer() {
-        if (gameType == 1) {
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return generateNumberCorrectAnswer();
         }
         return generateStringCorrectAnswer();

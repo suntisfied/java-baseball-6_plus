@@ -11,8 +11,8 @@ public class InitializingInputValidator {
         return validatingUtils.isValidType.test(input);
     }
 
-    public boolean validateGameSize(String input, int gameType) {
-        if (gameType == 1) {
+    public boolean validateGameSize(String input, String gameType) {
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return validatingUtils.isPositiveInteger.test(input) && validatingUtils.isProperNumberSetting.test(input);
         }
         return validatingUtils.isPositiveInteger.test(input) && validatingUtils.isProperAlphabetSetting.test(input);

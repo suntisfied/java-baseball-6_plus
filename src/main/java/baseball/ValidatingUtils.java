@@ -22,7 +22,8 @@ public class ValidatingUtils {
         }
     };
 
-    public final Predicate<String> isValidType = input -> input.equals("1") || input.equals("2");
+    public final Predicate<String> isValidType = input ->
+            input.equals(Buttons.GAME_TYPE_NUMBER.getButton()) || input.equals(Buttons.GAME_TYPE_ALPHABET.getButton());
 
     public final Predicate<String> isProperNumberSetting = input -> {
         int parsedInput = Integer.parseInt(input);
@@ -48,5 +49,6 @@ public class ValidatingUtils {
 
     public final BiPredicate<String, Integer> isPredefinedSize = (input, size) -> input.length() == size;
 
-    public final Predicate<String> isValidEndingInput = input -> input.equals("1") || input.equals("2");
+    public final Predicate<String> isValidEndingInput = input ->
+            input.equals(Buttons.GAME_REPEAT.getButton()) || input.equals(Buttons.GAME_END.getButton());
 }

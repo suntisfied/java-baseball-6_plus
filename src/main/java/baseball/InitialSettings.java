@@ -1,4 +1,4 @@
 package baseball;
 
-public record InitialSettings(int gameType, int gameSize) {
+public record InitialSettings(String gameType, int gameSize) {
 }

@@ -2,11 +2,11 @@ package baseball;
 
 public class PlayerInputValidator extends ValidatingUtils {
     public boolean validatePlayerInput(String userInput, InitialSettings initialSettings) {
-        int gameType = initialSettings.gameType();
+        String gameType = initialSettings.gameType();
         int gameSize = initialSettings.gameSize();
         boolean commonValidity = isUniqueOnly.test(userInput) && isPredefinedSize.test(userInput, gameSize);
 
-        if (gameType == 1) {
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return isProperNumberRange.test(userInput) && isPositiveInteger.test(userInput) && commonValidity;
         }
 

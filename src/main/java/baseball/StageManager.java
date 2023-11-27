@@ -27,7 +27,7 @@ public class StageManager {
     }
 
     private InitialSettings initializeMainGame() {
-        int gameType = gameInitializer.setGameType();
+        String gameType = gameInitializer.setGameType();
         int gameSize = gameInitializer.setGameSize(gameType);
         System.out.println();
         return new InitialSettings(gameType, gameSize);

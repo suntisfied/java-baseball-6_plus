@@ -26,28 +26,28 @@ public class TextFormatter {
     }
 
     public String formatGameStart(InitialSettings initialSettings) {
-        int gameType = initialSettings.gameType();
-        if (gameType == 1) {
+        String gameType = initialSettings.gameType();
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return Texts.NUMBER_GAME_START.getText();
         }
         return Texts.ALPHABET_GAME_START.getText();
     }
 
     public String formatInput(InitialSettings initialSettings) {
-        int gameType = initialSettings.gameType();
-        if (gameType == 1) {
+        String gameType = initialSettings.gameType();
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return Texts.NUMBER_INPUT.getText();
         }
         return Texts.ALPHABET_INPUT.getText();
     }
 
     public String formatGameEnd(PlayerAnswer playerAnswer, InitialSettings initialSettings) {
-        int gameType = initialSettings.gameType();
+        String gameType = initialSettings.gameType();
         int gameSize = initialSettings.gameSize();
         if (new GiveUp().isGivingUp(playerAnswer)) {
             return "";
         }
-        if (gameType == 1) {
+        if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return String.format("%d" + Texts.NUMBER_CORRECT_ANSWER.getText() + "%n", gameSize);
         }
         return String.format("%d" + Texts.ALPHABET_CORRECT_ANSWER.getText() + "%n", gameSize);

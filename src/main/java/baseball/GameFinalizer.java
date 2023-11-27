@@ -9,9 +9,6 @@ public class GameFinalizer extends ConsoleInputForm {
                         throw new IllegalArgumentException(Texts.ERROR_GAME_END_INPUT.getText());
                     }
                 });
-        return userInput.equals("1");
+        return userInput.equals(Buttons.GAME_REPEAT.getButton());
     }
-//    public boolean isEndingMain() {
-//
-//    }
 }
