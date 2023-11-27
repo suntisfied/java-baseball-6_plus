@@ -11,13 +11,8 @@ public class StageManager {
 
     public void repeatEntireGameUntilEnd() {
         do {
-            proceedMainGameUntilCorrectAnswer();
+            proceedMainGame();
         } while (new GameFinalizer().isRepeating());
-    }
-
-    private void proceedMainGameUntilCorrectAnswer() {
-        var initialSettings = initializeMainGame();
-        proceedMainGame(initialSettings);
     }
 
     private InitialSettings initializeMainGame() {
@@ -27,7 +22,8 @@ public class StageManager {
         return new InitialSettings(gameType, gameSize);
     }
 
-    private void proceedMainGame(InitialSettings initialSettings) {
+    private void proceedMainGame() {
+        var initialSettings = initializeMainGame();
         System.out.println(textFormatter.formatGameStart(initialSettings));
 
         var correctAnswer = new CorrectAnswerGenerator(initialSettings).generateCorrectAnswer();
