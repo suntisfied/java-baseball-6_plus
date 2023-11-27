@@ -3,12 +3,14 @@ package baseball;
 public class StageManager {
     private final GameInitializer gameInitializer;
     private final Player player;
+    private final GiveUp giveUp;
     private final GameFinalizer gameFinalizer;
     private final TextFormatter textFormatter;
 
     public StageManager() {
         gameInitializer = new GameInitializer();
         player = new Player();
+        giveUp = new GiveUp();
         gameFinalizer = new GameFinalizer();
         textFormatter = new TextFormatter();
     }
@@ -20,23 +22,37 @@ public class StageManager {
     }
 
     private void proceedMainGameUntilCorrectAnswer() {
+        var initialSettings = initializeMainGame();
+        proceedMainGame(initialSettings);
+    }
+
+    private InitialSettings initializeMainGame() {
         int gameType = gameInitializer.setGameType();
         int gameSize = gameInitializer.setGameSize(gameType);
         System.out.println();
+        return new InitialSettings(gameType, gameSize);
+    }
 
+    private void proceedMainGame(InitialSettings initialSettings) {
         PlayerAnswer playerAnswer;
-        var correctAnswer = new CorrectAnswerGenerator(gameType, gameSize).generateCorrectAnswer();
-        System.out.println(textFormatter.formatGameStart(gameType));
+        CorrectAnswer correctAnswer = new CorrectAnswerGenerator(initialSettings).generateCorrectAnswer();
+        Umpire umpire;
+
+        System.out.println(textFormatter.formatGameStart(initialSettings));
         do {
-            playerAnswer = player.speculateAnswer(gameType, gameSize);
+            playerAnswer = player.speculateAnswer(initialSettings);
             System.out.println("User Input: " + playerAnswer.answer());
             System.out.println("Correct Answer: " + correctAnswer.answer());
 
-            var umpire = new Umpire(playerAnswer, correctAnswer);
-            int ball = umpire.callBall();
-            int strike = umpire.callStrike();
-            System.out.println(textFormatter.formatBallStrike(ball, strike));
-        } while (!playerAnswer.answer().equals(correctAnswer.answer()));
-        System.out.println(textFormatter.formatGameEnd(gameType, gameSize));
+            if (giveUp.isGivingUp(playerAnswer)) {
+                break;
+            }
+
+            umpire = new Umpire(playerAnswer, correctAnswer);
+            var pitchingResult = umpire.umpire();
+            
+            System.out.println(textFormatter.formatPitchingResult(pitchingResult));
+        } while (!umpire.isCompleteAnswer());
+        System.out.print(textFormatter.formatGameEnd(playerAnswer, initialSettings));
     }
 }

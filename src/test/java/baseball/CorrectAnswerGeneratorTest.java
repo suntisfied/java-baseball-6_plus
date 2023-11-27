@@ -15,7 +15,7 @@ class CorrectAnswerGeneratorTest {
             "2, 4",
     })
     public void generateCorrectAnswerInNumber(int gameType, int gameSize) {
-        var correctAnswerGenerator = new CorrectAnswerGenerator(gameType, gameSize);
+        var correctAnswerGenerator = new CorrectAnswerGenerator(new InitialSettings(gameType, gameSize));
         var correctAnswer = correctAnswerGenerator.generateCorrectAnswer();
         System.out.println("Correct Answer: " + correctAnswer.answer());
 

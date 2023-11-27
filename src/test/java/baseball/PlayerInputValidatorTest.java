@@ -25,6 +25,8 @@ class PlayerInputValidatorTest {
     public void validateUserInputInNumber(String userInput, int gameType, int gameSize, boolean isValid) {
         var playerInputValidator = new PlayerInputValidator();
 
-        assertThat(playerInputValidator.validatePlayerInput(userInput, gameType, gameSize)).isEqualTo(isValid);
+        assertThat(
+                playerInputValidator.validatePlayerInput(userInput, new InitialSettings(gameType, gameSize))).isEqualTo(
+                isValid);
     }
 }

@@ -7,11 +7,14 @@ public class Player extends ConsoleInputForm {
         playerInputValidator = new PlayerInputValidator();
     }
 
-    public PlayerAnswer speculateAnswer(int gameType, int gameSize) {
+    public PlayerAnswer speculateAnswer(InitialSettings initialSettings) {
         String userInput = getInputUntilCorrect(
-                () -> System.out.print(new TextFormatter().formatInput(gameType)),
+                () -> System.out.print(new TextFormatter().formatInput(initialSettings)),
                 input -> {
-                    if (!playerInputValidator.validatePlayerInput(input, gameType, gameSize)) {
+                    if (input.equals(Texts.MARK_GIVE_UP.getText())) {
+                        throw new GiveUpException(Texts.GIVE_UP.getText());
+                    }
+                    if (!playerInputValidator.validatePlayerInput(input, initialSettings)) {
                         throw new IllegalArgumentException(Texts.ERROR_GAME_GUESS_INPUT.getText());
                     }
                 }

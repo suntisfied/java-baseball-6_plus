@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CorrectAnswerGenerator {
-    private final int gameSize;
     private final int gameType;
+    private final int gameSize;
 
-    public CorrectAnswerGenerator(int gameType, int gameSize) {
-        this.gameSize = gameSize;
-        this.gameType = gameType;
+    public CorrectAnswerGenerator(InitialSettings initialSettings) {
+        gameType = initialSettings.gameType();
+        gameSize = initialSettings.gameSize();
     }
 
     public final CorrectAnswer generateCorrectAnswer() {

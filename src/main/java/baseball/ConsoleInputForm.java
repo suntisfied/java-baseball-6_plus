@@ -16,7 +16,7 @@ public abstract class ConsoleInputForm {
 
     @FunctionalInterface
     public interface InputValidator {
-        void validate(String input) throws IllegalArgumentException;
+        void validate(String input) throws IllegalArgumentException, GiveUpException;
     }
 
     public String getInputUntilCorrect(Instruction instruction, InputValidator inputValidator) {
@@ -28,6 +28,8 @@ public abstract class ConsoleInputForm {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getInputUntilCorrect(instruction, inputValidator);
+        } catch (GiveUpException e) {
+            System.out.println(e.getMessage());
         }
 
         return input;

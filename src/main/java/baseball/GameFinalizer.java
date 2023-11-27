@@ -11,4 +11,7 @@ public class GameFinalizer extends ConsoleInputForm {
                 });
         return userInput.equals("1");
     }
+//    public boolean isEndingMain() {
+//
+//    }
 }
