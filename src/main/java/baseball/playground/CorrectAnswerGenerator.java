@@ -15,22 +15,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class CorrectAnswerGenerator {
-    private final String gameType;
-    private final int gameSize;
-
-    public CorrectAnswerGenerator(InitialSettings initialSettings) {
-        gameType = initialSettings.gameType();
-        gameSize = initialSettings.gameSize();
-    }
-
-    public final CorrectAnswer generateCorrectAnswer() {
+    public final CorrectAnswer generateCorrectAnswer(InitialSettings initialSettings) {
+        String gameType = initialSettings.gameType();
         if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
-            return generateNumberCorrectAnswer();
+            return generateNumberCorrectAnswer(initialSettings);
         }
-        return generateStringCorrectAnswer();
+        return generateStringCorrectAnswer(initialSettings);
     }
 
-    private CorrectAnswer generateNumberCorrectAnswer() {
+    private CorrectAnswer generateNumberCorrectAnswer(InitialSettings initialSettings) {
+        int gameSize = initialSettings.gameSize();
         List<Integer> correctAnswerNumberDigits = new ArrayList<>(
                 IntStream.rangeClosed(INITIAL_NUMBER.getNumber(), LAST_NUMBER.getNumber()).boxed().toList());
         Collections.shuffle(correctAnswerNumberDigits);
@@ -43,7 +37,8 @@ public class CorrectAnswerGenerator {
         return new CorrectAnswer(correctAnswerNumber);
     }
 
-    private CorrectAnswer generateStringCorrectAnswer() {
+    private CorrectAnswer generateStringCorrectAnswer(InitialSettings initialSettings) {
+        int gameSize = initialSettings.gameSize();
         List<Character> correctAnswerAlphabets =
                 new ArrayList<>(IntStream.rangeClosed(INITIAL_CHARACTER.getCharacter(), LAST_CHARACTER.getCharacter())
                         .mapToObj(numberValue -> (char) numberValue)

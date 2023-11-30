@@ -45,7 +45,7 @@ public class TextFormatter {
         return Texts.ALPHABET_GAME_START.getText() + LINE_BREAK.getText() + giveUpInstruction;
     }
 
-    public String formatInput(InitialSettings initialSettings) {
+    public String formatPlayerInput(InitialSettings initialSettings) {
         String gameType = initialSettings.gameType();
         if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
             return Texts.NUMBER_INPUT.getText();

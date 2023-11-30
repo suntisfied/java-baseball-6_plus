@@ -1,19 +1,26 @@
-package baseball.staff;
+package baseball;
 
 import baseball.giveup.GiveUp;
 import baseball.playground.CorrectAnswerGenerator;
 import baseball.playground.GameRecorder;
 import baseball.playground.Player;
 import baseball.playground.Umpire;
+import baseball.staff.GameFinalizer;
+import baseball.staff.GameInitializer;
 import baseball.textformat.TextFormatter;
+import baseball.util.ConsoleManager;
 import baseball.valueholder.CorrectAnswer;
 import baseball.valueholder.InitialSettings;
 
 public class StageManager {
+    private final CorrectAnswerGenerator correctAnswerGenerator;
     private final GameInitializer gameInitializer;
+    private final GameFinalizer gameFinalizer;
     private final TextFormatter textFormatter;
 
-    public StageManager() {
+    public StageManager(CorrectAnswerGenerator correctAnswerGenerator) {
+        this.correctAnswerGenerator = correctAnswerGenerator;
+        gameFinalizer = new GameFinalizer();
         gameInitializer = new GameInitializer();
         textFormatter = new TextFormatter();
     }
@@ -21,7 +28,8 @@ public class StageManager {
     public void repeatEntireGameUntilEnd() {
         do {
             proceedMainGame();
-        } while (new GameFinalizer().isRepeating());
+        } while (gameFinalizer.isRepeating());
+        ConsoleManager.closeConsole();
     }
 
     private InitialSettings initializeMainGame() {
@@ -35,7 +43,7 @@ public class StageManager {
         var initialSettings = initializeMainGame();
         System.out.println(textFormatter.formatGameStart(initialSettings));
 
-        var correctAnswer = new CorrectAnswerGenerator(initialSettings).generateCorrectAnswer();
+        var correctAnswer = correctAnswerGenerator.generateCorrectAnswer(initialSettings);
         String gameSummary = pitchBall(initialSettings, correctAnswer, new GameRecorder());
 
         System.out.println(gameSummary);

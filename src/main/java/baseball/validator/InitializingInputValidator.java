@@ -1,23 +1,36 @@
 package baseball.validator;
 
+import static baseball.util.ValidatingUtils.isPositiveInteger;
+import static baseball.util.ValidatingUtils.isProperAlphabetSetting;
+import static baseball.util.ValidatingUtils.isProperNumberSetting;
+import static baseball.util.ValidatingUtils.isValidType;
+
+import baseball.inputform.InputValidatorForm;
 import baseball.setting.Buttons;
-import baseball.util.ValidatingUtils;
+import baseball.setting.Texts;
 
-public class InitializingInputValidator {
-    private final ValidatingUtils validatingUtils;
+public class InitializingInputValidator extends InputValidatorForm {
 
-    public InitializingInputValidator() {
-        validatingUtils = new ValidatingUtils();
+    public void checkGameType(String gameType) {
+        throwIllegalArgumentExceptionToInvalid(Texts.ERROR_GAME_TYPE_INPUT.getText(),
+                () -> validateGameType(gameType));
     }
 
-    public boolean validateGameType(String input) {
-        return validatingUtils.isValidType.test(input);
+    public void checkGameSize(String gameSize, String gameType) {
+        throwIllegalArgumentExceptionToInvalid(Texts.ERROR_GAME_SIZE_INPUT.getText(),
+                () -> validateGameSize(gameSize, gameType));
     }
 
-    public boolean validateGameSize(String input, String gameType) {
+    private boolean validateGameType(String gameType) {
+        return isValidType.test(gameType);
+    }
+
+    private boolean validateGameSize(String gameSize, String gameType) {
         if (gameType.equals(Buttons.GAME_TYPE_NUMBER.getButton())) {
-            return validatingUtils.isPositiveInteger.test(input) && validatingUtils.isProperNumberSetting.test(input);
+            return isPositiveInteger.test(gameSize) && isProperNumberSetting.test(
+                    gameSize);
         }
-        return validatingUtils.isPositiveInteger.test(input) && validatingUtils.isProperAlphabetSetting.test(input);
+        return isPositiveInteger.test(gameSize) && isProperAlphabetSetting.test(
+                gameSize);
     }
 }

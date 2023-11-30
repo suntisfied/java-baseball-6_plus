@@ -24,10 +24,10 @@ public enum Texts {
     INSTRUCTION_GIVE_UP(String.format("%s를 입력해 게임을 포기할 수 있습니다.", MARK_GIVE_UP.getText())),
     GIVE_UP("게임을 포기하셨습니다."),
     NONE("없음"),
-    ERROR_GAME_TYPE_INPUT("올바른 게임 유형 입력이 아닙니다."),
-    ERROR_GAME_SIZE_INPUT("올바른 게임 크기 입력이 아닙니다."),
-    ERROR_GAME_GUESS_INPUT("올바른 입력이 아닙니다."),
-    ERROR_GAME_END_INPUT("올바른 종료 입력이 아닙니다."),
+    ERROR_GAME_TYPE_INPUT("[ERROR] 올바른 게임 유형 입력이 아닙니다."),
+    ERROR_GAME_SIZE_INPUT("[ERROR] 올바른 게임 길이 입력이 아닙니다."),
+    ERROR_GAME_GUESS_INPUT("[ERROR] 올바른 입력이 아닙니다."),
+    ERROR_GAME_END_INPUT("[ERROR] 올바른 종료 입력이 아닙니다."),
     ;
 
     private final String text;
