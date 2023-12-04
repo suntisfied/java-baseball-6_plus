@@ -5,17 +5,12 @@ import baseball.util.ConsoleManager;
 
 public abstract class ConsoleInputForm {
     @FunctionalInterface
-    public interface Instruction {
-        void show();
-    }
-
-    @FunctionalInterface
     public interface InputInspector {
         void inspectInput(String input) throws IllegalArgumentException, GiveUpException;
     }
 
-    protected String getInputUntilCorrect(Instruction instruction, InputInspector inputInspector) {
-        instruction.show();
+    protected String getInputUntilCorrect(Runnable instruction, InputInspector inputInspector) {
+        instruction.run();
         String input = ConsoleManager.getConsoleInput();
 
         try {

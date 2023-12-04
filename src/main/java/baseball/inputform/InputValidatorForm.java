@@ -1,13 +1,10 @@
 package baseball.inputform;
 
-public abstract class InputValidatorForm {
-    @FunctionalInterface
-    public interface InputValidator {
-        boolean validateInput();
-    }
+import java.util.function.BooleanSupplier;
 
-    protected void throwIllegalArgumentExceptionToInvalid(String errorMessage, InputValidator inputValidator) {
-        if (!inputValidator.validateInput()) {
+public abstract class InputValidatorForm {
+    protected void throwIllegalArgumentExceptionToInvalid(String errorMessage, BooleanSupplier inputValidator) {
+        if (!inputValidator.getAsBoolean()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
