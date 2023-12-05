@@ -1,7 +1,11 @@
 package baseball;
 
+import baseball.playground.CorrectAnswerGenerator;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        var stageManager = new StageManager(new CorrectAnswerGenerator());
+
+        stageManager.repeatEntireGameUntilEnd();
     }
 }
